@@ -40,7 +40,14 @@ export default [
       "@typescript-eslint/explicit-function-return-type": ["error"],
       "@typescript-eslint/explicit-module-boundary-types": ["error"],
       "@typescript-eslint/no-explicit-any": ["error"],
-      "@typescript-eslint/no-unused-vars": ["error"],
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          argsIgnorePattern: "^_",
+          varsIgnorePattern: "^_",
+          ignoreRestSiblings: true,
+        },
+      ],
       "@typescript-eslint/prefer-nullish-coalescing": ["error"],
       "@typescript-eslint/no-misused-promises": [
         "error",
@@ -51,6 +58,7 @@ export default [
 
       eqeqeq: [2, "smart"],
       "no-console": ["error"],
+      "no-unused-vars": "off", // Disable base rule as it conflicts with @typescript-eslint/no-unused-vars
       "no-restricted-imports": ["error"],
       "prettier/prettier": [
         "error",
