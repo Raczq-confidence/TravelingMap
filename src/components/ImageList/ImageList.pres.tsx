@@ -24,9 +24,7 @@ export const ImageList: FunctionComponent<IImageListProps> = ({ itemData }) => {
               position="below"
               title={item.introduce}
             />
-          ) : (
-            null
-          )}
+          ) : null}
         </ImageListItem>
       ))}
     </MUIImageList>
