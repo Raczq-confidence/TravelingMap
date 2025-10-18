@@ -16,6 +16,7 @@ export default {
         "build", // Build system or external dependency changes
         "ci", // CI configuration files and scripts changes
         "revert", // Revert commit
+        "comment", // Copilot comment additions
       ],
     ],
     "subject-case": [0], // No case restriction for subject

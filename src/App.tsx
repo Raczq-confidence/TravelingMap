@@ -9,7 +9,7 @@ import ARTICLES from "~/config/data/data.json";
 import { theme } from "~/config/styles/theme";
 import { Post } from "~/components/post";
 import { Content } from "~/components/content";
-import { ImageList } from "~/components/ImageList";
+import { ImageList } from "~/components/image-list";
 import renderEventManager from "./render-event";
 import classes from "./App.module.scss";
 import "./global.scss";
