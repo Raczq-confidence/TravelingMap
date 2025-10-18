@@ -1,14 +1,20 @@
 import { Box, ThemeProvider } from "@mui/material";
-import { type FunctionComponent, type ReactNode, useMemo } from "react";
+import {
+  type FunctionComponent,
+  type ReactNode,
+  useEffect,
+  useMemo,
+} from "react";
 import ARTICLES from "~/config/data/data.json";
 import { theme } from "~/config/styles/theme";
 import { Post } from "~/components/post";
 import { Content } from "~/components/content";
 import { ImageList } from "~/components/ImageList";
+import renderEventManager from "./render-event";
 import classes from "./App.module.scss";
 import "./global.scss";
 
-/* eslint-disable no-unused-vars, @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 enum BlockType {
   text = "text",
   images = "images",
@@ -42,9 +48,13 @@ const Article: FunctionComponent<{ article: any }> = ({ article }) => {
     </Post>
   );
 };
-/* eslint-enable no-unused-vars, @typescript-eslint/no-explicit-any */
+/* eslint-enable @typescript-eslint/no-explicit-any */
 
 export const App: FunctionComponent = () => {
+  useEffect(() => {
+    renderEventManager.dispatch();
+  }, []);
+
   const articles = useMemo(() => {
     return ARTICLES.map((article, index) => (
       <Article key={index} article={article} />
