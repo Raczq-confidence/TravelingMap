@@ -7,6 +7,10 @@ type RenderEvent = CustomEvent<RenderEventDetail>;
 export class RenderEventManager {
   private static readonly EVENT_NAME = "renderEvent";
   private static instance: RenderEventManager;
+  private listenerMap = new WeakMap<
+    (_detail: RenderEventDetail) => void,
+    EventListener
+  >();
 
   private constructor() {}
 
@@ -35,15 +39,22 @@ export class RenderEventManager {
   }
 
   public addListener(callback: (_detail: RenderEventDetail) => void): void {
-    window.addEventListener(RenderEventManager.EVENT_NAME, (event) => {
+    const wrapper: EventListener = (event) => {
       if (this.isRenderEvent(event)) {
         callback(event.detail);
       }
-    });
+    };
+
+    this.listenerMap.set(callback, wrapper);
+    window.addEventListener(RenderEventManager.EVENT_NAME, wrapper);
   }
 
-  public removeListener(callback: EventListener): void {
-    window.removeEventListener(RenderEventManager.EVENT_NAME, callback);
+  public removeListener(callback: (_detail: RenderEventDetail) => void): void {
+    const wrapper = this.listenerMap.get(callback);
+    if (wrapper) {
+      window.removeEventListener(RenderEventManager.EVENT_NAME, wrapper);
+      this.listenerMap.delete(callback);
+    }
   }
 
   public getEventName(): string {
