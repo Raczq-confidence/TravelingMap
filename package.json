@@ -8,7 +8,12 @@
     "build": "vite build",
     "lint": "eslint . --fix && prettier --write . --config .prettierrc",
     "preview": "vite preview",
-    "precommit": "pnpm run lint"
+    "prepare": "husky install"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pnpm run lint"
+    }
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -34,6 +39,8 @@
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
     "eslint-plugin-react-refresh": "^0.4.9",
     "globals": "^15.9.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.4",
     "path": "^0.12.7",
     "prettier": "^3.3.3",
     "sass-embedded": "^1.79.1",

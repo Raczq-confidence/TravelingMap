@@ -25,7 +25,7 @@ export const ImageList: FunctionComponent<IImageListProps> = ({ itemData }) => {
               title={item.introduce}
             />
           ) : (
-            <></>
+            null
           )}
         </ImageListItem>
       ))}

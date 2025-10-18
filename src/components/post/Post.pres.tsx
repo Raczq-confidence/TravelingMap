@@ -34,7 +34,7 @@ export const Post: FunctionComponent<PropsWithChildren<IPostProps>> = ({
           {introduce}
         </Typography>
       ) : (
-        <></>
+        null
       )}
 
       {children}
